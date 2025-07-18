@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:suit_mobdev/pages/second_page.dart';
 import 'package:suit_mobdev/pages/third_page.dart';
 
 void main() {
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: MyHomePage(),
+      home: SecondPage(nameDisplay: 'Mandi'),
     );
   }
 }

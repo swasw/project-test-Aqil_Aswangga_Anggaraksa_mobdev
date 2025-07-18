@@ -2,6 +2,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:suit_mobdev/controller/user_model.dart';
+import 'package:suit_mobdev/globals/global_var.dart';
+import 'package:suit_mobdev/main.dart';
+import 'package:suit_mobdev/pages/second_page.dart';
 
 class ThirdScreen extends StatefulWidget {
   @override
@@ -106,6 +109,17 @@ class _ThirdScreenState extends State<ThirdScreen> {
                                   setState(() {
                                     selectedUser =
                                         "${user.firstName} ${user.lastName}";
+                                    chosen.add(user);
+                                    Navigator.pushAndRemoveUntil(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder:
+                                            (context) => SecondPage(
+                                              nameDisplay: selectedUser,
+                                            ),
+                                      ),
+                                      (Route<dynamic> route) => false,
+                                    );
                                   });
                                 },
                               );
