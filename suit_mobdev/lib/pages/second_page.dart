@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:suit_mobdev/globals/global_var.dart';
 import 'package:suit_mobdev/main.dart';
+import 'package:suit_mobdev/pages/loginpage.dart';
 import 'package:suit_mobdev/pages/third_page.dart';
 
 class SecondPage extends StatefulWidget {
@@ -28,58 +29,70 @@ class _SecondPageState extends State<SecondPage> {
         backgroundColor: Colors.blueAccent,
       ),
       body: SafeArea(
-        child: Column(
-          children: [
-            // Header
-            Container(
-              height: 100,
-              color: Colors.grey[300],
-              alignment: Alignment.centerLeft,
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Row(
-                children: [
-                  IconButton(
-                    icon: Icon(Icons.arrow_back),
-                    onPressed: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => MyHomePage()),
-                      );
-                    },
-                  ),
-                  SizedBox(width: 8),
-                  Text("Second Screen", style: TextStyle(fontSize: 20)),
-                ],
+        child: Container(
+          margin: EdgeInsets.symmetric(horizontal: 15),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Header
+              Container(
+                height: 100,
+                color: Colors.white,
+                alignment: Alignment.centerLeft,
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Row(
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.arrow_back),
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => Loginpage()),
+                        );
+                      },
+                    ),
+                    SizedBox(width: 8),
+                    Text("Second Screen", style: TextStyle(fontSize: 20)),
+                  ],
+                ),
               ),
-            ),
 
-            const SizedBox(height: 10),
-
-            // List of chosen users
-            Expanded(
-              child:
-                  chosen.isEmpty
-                      ? Center(
-                        child: Text(
-                          "Selected user",
-                          style: TextStyle(fontSize: 18, color: Colors.grey),
+              const SizedBox(height: 10),
+              Text("Welcome"),
+              Text(
+                widget.nameDisplay,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
+              // List of chosen users
+              Expanded(
+                child:
+                    chosen.isEmpty
+                        ? Center(
+                          child: Text(
+                            "Selected user",
+                            style: TextStyle(fontSize: 18, color: Colors.grey),
+                          ),
+                        )
+                        : ListView.builder(
+                          itemCount: chosen.length,
+                          itemBuilder: (context, index) {
+                            final user = chosen[index];
+                            return ListTile(
+                              leading: CircleAvatar(
+                                backgroundImage: NetworkImage(user.avatar),
+                              ),
+                              title: Text('${user.firstName} ${user.lastName}'),
+                              subtitle: Text(user.email),
+                            );
+                          },
                         ),
-                      )
-                      : ListView.builder(
-                        itemCount: chosen.length,
-                        itemBuilder: (context, index) {
-                          final user = chosen[index];
-                          return ListTile(
-                            leading: CircleAvatar(
-                              backgroundImage: NetworkImage(user.avatar),
-                            ),
-                            title: Text('${user.firstName} ${user.lastName}'),
-                            subtitle: Text(user.email),
-                          );
-                        },
-                      ),
-            ),
-          ],
+              ),
+            ],
+          ),
         ),
       ),
     );

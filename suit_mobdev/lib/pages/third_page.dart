@@ -73,7 +73,7 @@ class _ThirdScreenState extends State<ThirdScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("User List"), backgroundColor: Colors.teal),
+      appBar: AppBar(title: Text("Third Screen"), backgroundColor: Colors.teal),
       body: Column(
         children: [
           if (selectedUser.isNotEmpty)
